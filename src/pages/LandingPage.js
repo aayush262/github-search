@@ -1,15 +1,17 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
-
 import Button from "../Components/UI/Button";
 import Input from "../Components/UI/Input";
 
 const LandingPage = () => {
   const searchInputRef = useRef();
+  const navigate = useNavigate();
 
-  const handleSearch = (e) => {
-    console.log(searchInputRef.current.value);
+  const handleSearch = () => {
+    navigate(`/results/?search_query=${searchInputRef.current.value}`);
   };
 
   return (
