@@ -12,7 +12,6 @@ const Input = React.forwardRef(({ label, ...props }, ref) => {
               form-control
               w-full
               ml-1
-              mt-2
               px-3
               py-2
               text-base

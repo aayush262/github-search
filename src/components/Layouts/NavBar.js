@@ -16,7 +16,7 @@ const NavBar = () => {
           </h3>
         </div>
         <div className="py-2">
-          <Button className="rounded">Explore</Button>
+          <Button>Explore</Button>
         </div>
       </nav>
     </>

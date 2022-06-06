@@ -19,7 +19,7 @@ const LandingPage = () => {
       <NavBar />
       <div className="h-[90vh] w-full flex justify-center items-center">
         <div className="lg:w-1/2 lg:m-0 md:w-2/3 md:m-0 sm:w-full sm:mx-5 m-5  ">
-          <h1 className="text-blue-800  font-bold text-6xl font-redHat">
+          <h1 className="text-blue-800  font-bold text-6xl font-redHat animate-fadeIn">
             Your Github Search.
           </h1>
 
@@ -27,7 +27,7 @@ const LandingPage = () => {
             Find any repositories across github. Type a keyword below and start
             searching now.
           </p>
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-3">
             <div className="flex-auto">
               <Input
                 ref={searchInputRef}
