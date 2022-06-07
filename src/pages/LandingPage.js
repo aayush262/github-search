@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Brand from "../Components/Brand";
 
 import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
@@ -21,7 +22,12 @@ const LandingPage = () => {
 
   return (
     <Container>
-      <NavBar />
+      <NavBar>
+        <Brand />
+        <div className="py-2 flex items-center">
+          <Button>Explore</Button>
+        </div>
+      </NavBar>
       <div className="h-[90vh] w-full flex justify-center items-center">
         <div className="lg:w-1/2 lg:m-0 md:w-2/3 md:m-0 sm:w-full sm:mx-5 m-5  ">
           <h1 className="text-blue-800  font-bold text-6xl font-redHat animate-fadeIn">

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = React.forwardRef(({ label, ...props }, ref) => {
+const Input = React.forwardRef(({ label, className, ...props }, ref) => {
   return (
     <>
       <label htmlFor={props.id} className="form-label  text-gray-700">
@@ -8,7 +8,7 @@ const Input = React.forwardRef(({ label, ...props }, ref) => {
       </label>
       <input
         ref={ref}
-        className="
+        className={`
               form-control
               w-full
               ml-1
@@ -23,7 +23,8 @@ const Input = React.forwardRef(({ label, ...props }, ref) => {
               transition
               ease-in-out
               focus:text-gray-700 focus:bg-white focus:border-blue-800 focus:outline-none
-              "
+              ${className}
+              `}
         {...props}
       />
     </>
