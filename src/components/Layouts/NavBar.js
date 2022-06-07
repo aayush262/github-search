@@ -15,7 +15,7 @@ const NavBar = () => {
             Github Search
           </h3>
         </div>
-        <div className="py-2">
+        <div className="py-2 flex items-center">
           <Button>Explore</Button>
         </div>
       </nav>

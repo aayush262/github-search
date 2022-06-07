@@ -5,12 +5,17 @@ import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
 import Button from "../Components/UI/Button";
 import Input from "../Components/UI/Input";
+import { notify } from "../utils/notify";
 
 const LandingPage = () => {
   const searchInputRef = useRef();
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    if (searchInputRef.current.value.trim() === "") {
+      notify.error("Text is required");
+      return;
+    }
     navigate(`/results/?search_query=${searchInputRef.current.value}`);
   };
 
