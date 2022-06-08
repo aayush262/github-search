@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useSearch } from "../hooks/useSearch";
 import Button from "../Components/UI/Button";
@@ -15,39 +15,32 @@ import { ReactComponent as SearchIcon } from "./../Assets/icons/search.svg";
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
 import { notify } from "../utils/notify";
+import { fetchRepos } from "../store/repo-actions";
 
 const Results = () => {
   const [searchParams] = useSearchParams();
   const searchInputRef = useRef();
   const search = useSearch();
-
-  const [repos, setRepos] = useState([]);
+  const dispatch = useDispatch();
+  const { repos } = useSelector((state) => state.repo);
 
   useEffect(() => {
-    const fefchRepos = async () => {
-      const searchQuery = searchParams
-        .get("search_query")
-        .split(" ")
-        .join("%20");
-      console.log(searchQuery);
-      const { data } = await axios.get(
-        `https://api.github.com/search/repositories?q=${searchQuery}&per_page=25&page=1`
-      );
-      setRepos(data.items);
-    };
+    window.scrollTo(0, 0);
+  }, [repos]);
 
-    fefchRepos();
-  }, [searchParams]);
+  useEffect(() => {
+    if (searchParams.get("search_query").trim() === "") return;
+    const page = searchParams.get("page") ? searchParams.get("page") : 1;
+    dispatch(fetchRepos(searchParams.get("search_query"), page));
+  }, [searchParams, dispatch]);
 
   const handleSearch = () => {
-    if (searchInputRef.current.value.trim === "") {
+    if (searchInputRef.current.value.trim() === "") {
       notify.error("Text is required");
       return;
     }
     search(searchInputRef.current.value);
   };
-
-  console.log(repos);
   return (
     <Container>
       <NavBar>
@@ -101,7 +94,10 @@ const Results = () => {
         </ol>
 
         <section className="mt-4">
-          <RepoLists repos={repos} />
+          <RepoLists
+            query={searchParams.get("search_query")}
+            page={searchParams.get("page") ? searchParams.get("page") : 1}
+          />
         </section>
       </main>
     </Container>
