@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearch } from "./../hooks/useSearch";
 import Brand from "../Components/Brand";
 
 import Container from "../Components/Layouts/Container";
@@ -10,14 +10,14 @@ import { notify } from "../utils/notify";
 
 const LandingPage = () => {
   const searchInputRef = useRef();
-  const navigate = useNavigate();
+  const search = useSearch();
 
   const handleSearch = () => {
     if (searchInputRef.current.value.trim() === "") {
       notify.error("Text is required");
       return;
     }
-    navigate(`/results/?search_query=${searchInputRef.current.value}`);
+    search(searchInputRef.current.value);
   };
 
   return (
