@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   sortBy: "default",
   orderBy: "none",
   currentPage: 1,
+  selectedRepo: {},
 };
 
 const repoSlice = createSlice({
@@ -19,6 +20,9 @@ const repoSlice = createSlice({
       state.currentPage = currentPage;
       state.sortBy = sortValue;
       state.orderBy = order;
+    },
+    selectRepo(state, action) {
+      state.selectedRepo = action.payload;
     },
   },
 });

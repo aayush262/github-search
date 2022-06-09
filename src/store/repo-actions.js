@@ -1,7 +1,7 @@
 import { repoActions } from "./repo-slice";
 import github from "../api/github";
 
-//fetching repositories
+//fetching list of repositories
 export const fetchRepos = (query, page, sortValue = "default") => {
   return async (dispatch) => {
     const fetchData = async () => {
@@ -21,6 +21,16 @@ export const fetchRepos = (query, page, sortValue = "default") => {
           order: "desc",
         })
       );
+    } catch {}
+  };
+};
+
+//fetching single repository
+export const fetchRepoItem = (owner, name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await github.get(`/repos/${owner}/${name}`);
+      dispatch(repoActions.selectRepo(data));
     } catch {}
   };
 };

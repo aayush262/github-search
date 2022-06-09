@@ -1,4 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { repoActions } from "../../store/repo-slice";
 import Card from "../UI/Card";
 
 import { ReactComponent as EyeIcon } from "../../Assets/icons/eye.svg";
@@ -6,6 +9,13 @@ import { ReactComponent as StarIcon } from "../../Assets/icons/star.svg";
 import { ReactComponent as ForkIcon } from "../../Assets/icons/fork.svg";
 
 const RepoItem = ({ repo }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleRepo = () => {
+    dispatch(repoActions.selectRepo(repo));
+    navigate(`/repo/${repo.full_name}`);
+  };
   return (
     <div>
       <Card>
@@ -34,7 +44,10 @@ const RepoItem = ({ repo }) => {
         </div>
       </Card>
       <div className="w-40">
-        <h1 className="text-sm font-redHat py-1 hover:underline hover:decoration-2 overflow-clip hover:cursor-pointer">
+        <h1
+          onClick={handleRepo}
+          className="text-sm font-redHat py-1 hover:underline hover:decoration-2 overflow-clip hover:cursor-pointer"
+        >
           {repo.full_name}
         </h1>
         {repo.description && repo.description.length >= 40 ? (

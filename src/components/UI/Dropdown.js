@@ -8,7 +8,7 @@ const Dropdown = ({ sortList, onHandleSort }) => {
         onChange={(e) => {
           onHandleSort(e.target.value);
         }}
-        className="block p-1 bg-gray-200 rounded-md"
+        className="block p-1 bg-gray-200 font-sans rounded-md"
       >
         {sortList.map((sortListItem) => (
           <option key={sortListItem.value} value={sortListItem.value}>
