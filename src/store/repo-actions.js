@@ -34,3 +34,14 @@ export const fetchRepoItem = (owner, name) => {
     } catch {}
   };
 };
+
+//fetch repository readme with base64 decoding
+export const fetchContent = (owner, name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await github.get(`/repos/${owner}/${name}/readme`);
+      const decoded = window.atob(data.content);
+      dispatch(repoActions.replaceContent(decoded));
+    } catch {}
+  };
+};

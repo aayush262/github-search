@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   orderBy: "none",
   currentPage: 1,
   selectedRepo: {},
+  content: null,
 };
 
 const repoSlice = createSlice({
@@ -23,6 +24,9 @@ const repoSlice = createSlice({
     },
     selectRepo(state, action) {
       state.selectedRepo = action.payload;
+    },
+    replaceContent(state, action) {
+      state.content = action.payload;
     },
   },
 });

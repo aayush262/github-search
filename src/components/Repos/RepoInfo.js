@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Card from "../UI/Card";
 
 import { ReactComponent as EyeIcon } from "../../Assets/icons/eye.svg";
 import { ReactComponent as StarIcon } from "../../Assets/icons/star.svg";
@@ -16,7 +15,7 @@ const RepoInfo = () => {
   return (
     <>
       {isLoading || (
-        <Card>
+        <div>
           <h1 className="text-xl font-redHat px-4 py-2">About</h1>
 
           <div className="flex px-4 pb-2">
@@ -87,7 +86,7 @@ const RepoInfo = () => {
               </p>
             </div>
           </div>
-        </Card>
+        </div>
       )}
     </>
   );

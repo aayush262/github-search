@@ -7,7 +7,7 @@ import { useSearch } from "../../hooks/useSearch";
 import Dropdown from "../UI/Dropdown";
 
 const RepoLists = ({ query, page }) => {
-  const { repos, totalRepos } = useSelector((state) => state.repo);
+  const { repos, totalRepos, sortBy } = useSelector((state) => state.repo);
   const search = useSearch();
   const dispatch = useDispatch();
 
@@ -40,7 +40,11 @@ const RepoLists = ({ query, page }) => {
       <div className="flex gap-4 pb-3">
         <p className="text-md  text-gray-600 ">About {totalRepos} results.</p>
         <div className="flex items-center">
-          <Dropdown onHandleSort={handleSort} sortList={sortList} />
+          <Dropdown
+            onHandleSort={handleSort}
+            sortList={sortList}
+            sortValue={sortBy}
+          />
         </div>
       </div>
 

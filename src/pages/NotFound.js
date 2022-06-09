@@ -4,7 +4,6 @@ import Container from "./../Components/Layouts/Container";
 
 const NotFound = () => {
   const params = useParams();
-  console.log(params);
   return (
     <Container>
       <div className="h-screen w-full flex justify-center items-center">

@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchRepoItem } from "../store/repo-actions";
+import { fetchRepoItem, fetchContent } from "../store/repo-actions";
 import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
 import Brand from "../Components/Brand";
 import Button from "../Components/UI/Button";
 import RepoInfo from "../Components/Repos/RepoInfo";
+import MarkDown from "../Components/Repos/MarkDown";
 
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
+import { ReactComponent as BranchIcon } from "./../Assets/icons/branch.svg";
 
 const RepoDetails = () => {
   const { owner, name } = useParams();
@@ -21,6 +23,10 @@ const RepoDetails = () => {
       dispatch(fetchRepoItem(owner, name));
     }
   }, [selectedRepo, dispatch, owner, name]);
+
+  useEffect(() => {
+    dispatch(fetchContent(owner, name));
+  }, [dispatch, owner, name]);
 
   return (
     <Container>
@@ -50,8 +56,21 @@ const RepoDetails = () => {
         </ol>
 
         <section className="mt-4 flex gap-5 lg:flex-nowrap  flex-wrap ">
-          <div className="w-full lg:w-2/3 ">hello</div>
-          <div className="w-1/3">
+          <div className="w-full lg:w-2/3 h-full ">
+            <div className="flex gap-2">
+              <p className="rounded bg-slate-400 inline-block px-4 py-2 font-redHat">
+                <div className="flex gap-1">
+                  <div className="flex items-center">
+                    <BranchIcon className="h-4 w-4" />
+                  </div>
+                  {selectedRepo.default_branch}
+                </div>
+              </p>
+              <h2 className="text-4xl font-redHat">ReadMe.md</h2>
+            </div>
+            <MarkDown />
+          </div>
+          <div className="w-1/3 h-full">
             <RepoInfo />
           </div>
         </section>
