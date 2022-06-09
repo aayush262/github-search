@@ -16,13 +16,14 @@ import RepoLists from "../Components/Repos/RepoLists";
 import { ReactComponent as SearchIcon } from "./../Assets/icons/search.svg";
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
+import Loader from "../Components/UI/Loader";
 
 const Results = () => {
   const [searchParams] = useSearchParams();
   const searchInputRef = useRef();
   const search = useSearch();
   const dispatch = useDispatch();
-  const { repos, sortBy } = useSelector((state) => state.repo);
+  const { repos, sortBy, showLoading } = useSelector((state) => state.repo);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -73,33 +74,39 @@ const Results = () => {
           </div>
         </div>
       </NavBar>
-      <main className="lg:mx-40 md:mx-10 mx-2 mt-4">
-        <ol className="inline-flex items-center space-x-1 md:space-x-3">
-          <li className="inline-flex items-center">
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-gray-900 inline-flex items-center"
-            >
-              <HomeIcon fill="#000" />
-              Home
-            </Link>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <ArrowRightIcon height={22} width={22} fill="#000" />
-              <p>Results for: &nbsp;</p>
-              <span>{searchParams.get("search_query")}</span>
-            </div>
-          </li>
-        </ol>
+      {!showLoading ? (
+        <main className="lg:mx-40 md:mx-10 mx-2 mt-4">
+          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+            <li className="inline-flex items-center">
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-gray-900 inline-flex items-center"
+              >
+                <HomeIcon fill="#000" />
+                Home
+              </Link>
+            </li>
+            <li>
+              <div className="flex items-center">
+                <ArrowRightIcon height={22} width={22} fill="#000" />
+                <p>Results for: &nbsp;</p>
+                <span>{searchParams.get("search_query")}</span>
+              </div>
+            </li>
+          </ol>
 
-        <section className="mt-4">
-          <RepoLists
-            query={searchParams.get("search_query")}
-            page={searchParams.get("page") ? searchParams.get("page") : 1}
-          />
-        </section>
-      </main>
+          <section className="mt-4">
+            <RepoLists
+              query={searchParams.get("search_query")}
+              page={searchParams.get("page") ? searchParams.get("page") : 1}
+            />
+          </section>
+        </main>
+      ) : (
+        <div className="h-[90vh] flex justify-center items-center">
+          <Loader />
+        </div>
+      )}
     </Container>
   );
 };

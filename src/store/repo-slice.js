@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   currentPage: 1,
   selectedRepo: {},
   content: null,
+  showLoading: false,
 };
 
 const repoSlice = createSlice({
@@ -27,6 +28,9 @@ const repoSlice = createSlice({
     },
     replaceContent(state, action) {
       state.content = action.payload;
+    },
+    changeLoadingState(state) {
+      state.showLoading = !state.showLoading;
     },
   },
 });

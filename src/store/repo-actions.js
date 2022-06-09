@@ -5,6 +5,7 @@ import github from "../api/github";
 export const fetchRepos = (query, page, sortValue = "default") => {
   return async (dispatch) => {
     const fetchData = async () => {
+      dispatch(repoActions.changeLoadingState());
       const { data } = await github.get(
         `/search/repositories?q=${query}&sort=${sortValue}&per_page=25&page=${page}&order={desc}`
       );
@@ -21,7 +22,10 @@ export const fetchRepos = (query, page, sortValue = "default") => {
           order: "desc",
         })
       );
-    } catch {}
+    } catch {
+    } finally {
+      dispatch(repoActions.changeLoadingState());
+    }
   };
 };
 
