@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { dateFns } from "./../../utils/date-fns";
 
 import { ReactComponent as EyeIcon } from "../../Assets/icons/eye.svg";
 import { ReactComponent as StarIcon } from "../../Assets/icons/star.svg";
@@ -83,6 +84,12 @@ const RepoInfo = () => {
               </div>
               <p className="text-md">
                 {selectedRepo.open_issues_count} open issues
+              </p>
+            </div>
+            <div className="flex gap-1 pb-[0.3rem]">
+              <p className="text-md">
+                Last updated on: &nbsp;
+                {dateFns.formatDate(selectedRepo.updated_at)}
               </p>
             </div>
           </div>

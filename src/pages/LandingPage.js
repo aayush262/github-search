@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
+import { notify } from "../utils/notify";
 import { useSearch } from "./../hooks/useSearch";
+import { keywords } from "../utils/keywords";
 import Brand from "../Components/Brand";
-
 import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
 import Button from "../Components/UI/Button";
 import Input from "../Components/UI/Input";
-import { notify } from "../utils/notify";
 
 const LandingPage = () => {
   const searchInputRef = useRef();
@@ -25,10 +25,16 @@ const LandingPage = () => {
       <NavBar>
         <Brand />
         <div className="py-2 flex items-center">
-          <Button>Explore</Button>
+          <Button
+            onClick={() => {
+              search(keywords[Math.floor(Math.random() * keywords.length)]);
+            }}
+          >
+            Explore
+          </Button>
         </div>
       </NavBar>
-      <div className="h-[90vh] w-full flex justify-center items-center">
+      <div className="h-[75vh] w-full flex justify-center items-center">
         <div className="lg:w-1/2 lg:m-0 md:w-2/3 md:m-0 sm:w-full sm:mx-5 m-5  ">
           <h1 className="text-blue-800  font-bold text-6xl font-redHat animate-fadeIn">
             Your Github Search.

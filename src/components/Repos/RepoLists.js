@@ -7,7 +7,9 @@ import { useSearch } from "../../hooks/useSearch";
 import Dropdown from "../UI/Dropdown";
 
 const RepoLists = ({ query, page }) => {
-  const { repos, totalRepos, sortBy } = useSelector((state) => state.repo);
+  const { repos, totalRepos, sortBy, showLoading } = useSelector(
+    (state) => state.repo
+  );
   const search = useSearch();
   const dispatch = useDispatch();
 
@@ -52,7 +54,9 @@ const RepoLists = ({ query, page }) => {
         {repos.length > 0 ? (
           repos.map((repo) => <RepoItem key={repo.id} repo={repo} />)
         ) : (
-          <h2 className="font-redHat">No results Found</h2>
+          <h2 className="font-redHat flex h-[60vh] text-2xl w-full items-center justify-center">
+            No results Found
+          </h2>
         )}
       </div>
 

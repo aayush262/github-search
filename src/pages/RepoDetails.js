@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchRepoItem, fetchContent } from "../store/repo-actions";
+import { keywords } from "../utils/keywords";
+import { useSearch } from "../hooks/useSearch";
 import Container from "../Components/Layouts/Container";
 import NavBar from "../Components/Layouts/NavBar";
 import Brand from "../Components/Brand";
@@ -17,6 +19,7 @@ const RepoDetails = () => {
   const { owner, name } = useParams();
   const { selectedRepo } = useSelector((state) => state.repo);
   const dispatch = useDispatch();
+  const search = useSearch();
 
   useEffect(() => {
     if (Object.keys(selectedRepo).length === 0) {
@@ -33,7 +36,13 @@ const RepoDetails = () => {
       <NavBar>
         <Brand />
         <div className="py-2 flex items-center">
-          <Button>Explore</Button>
+          <Button
+            onClick={() => {
+              search(keywords[Math.floor(Math.random() * keywords.length)]);
+            }}
+          >
+            Explore
+          </Button>
         </div>
       </NavBar>
       <main className="lg:mx-40 md:mx-10 mx-2 mt-4">
