@@ -13,7 +13,7 @@ const RepoItem = ({ repo }) => {
           <div className="relative">
             <img
               src={repo.owner.avatar_url}
-              alt="somepic"
+              alt="avatar"
               className="h-48 rounded-md object-cover "
             />
             <div className="absolute flex top-0 left-0 bg-indigo-500 items-center gap-1 text-white py-0.25 px-1.5 rounded-tl-md rounded-br-md">
@@ -34,7 +34,7 @@ const RepoItem = ({ repo }) => {
         </div>
       </Card>
       <div className="w-40">
-        <h1 className="text-sm font-redHat py-1 hover:underline hover:decoration-2 overflow-clip">
+        <h1 className="text-sm font-redHat py-1 hover:underline hover:decoration-2 overflow-clip hover:cursor-pointer">
           {repo.full_name}
         </h1>
         {repo.description && repo.description.length >= 40 ? (

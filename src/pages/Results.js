@@ -3,6 +3,8 @@ import { useSearchParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useSearch } from "../hooks/useSearch";
+import { notify } from "../utils/notify";
+import { fetchRepos } from "../store/repo-actions";
 import Button from "../Components/UI/Button";
 import NavBar from "../Components/Layouts/NavBar";
 import Brand from "../Components/Brand";
@@ -14,15 +16,13 @@ import RepoLists from "../Components/Repos/RepoLists";
 import { ReactComponent as SearchIcon } from "./../Assets/icons/search.svg";
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
-import { notify } from "../utils/notify";
-import { fetchRepos } from "../store/repo-actions";
 
 const Results = () => {
   const [searchParams] = useSearchParams();
   const searchInputRef = useRef();
   const search = useSearch();
   const dispatch = useDispatch();
-  const { repos } = useSelector((state) => state.repo);
+  const { repos, sortBy } = useSelector((state) => state.repo);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,8 +31,8 @@ const Results = () => {
   useEffect(() => {
     if (searchParams.get("search_query").trim() === "") return;
     const page = searchParams.get("page") ? searchParams.get("page") : 1;
-    dispatch(fetchRepos(searchParams.get("search_query"), page));
-  }, [searchParams, dispatch]);
+    dispatch(fetchRepos(searchParams.get("search_query"), page, sortBy));
+  }, [searchParams, dispatch, sortBy]);
 
   const handleSearch = () => {
     if (searchInputRef.current.value.trim() === "") {

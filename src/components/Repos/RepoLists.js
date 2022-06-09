@@ -1,21 +1,48 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchRepos } from "../../store/repo-actions";
 import Pagination from "../Layouts/Pagination";
 import RepoItem from "./RepoItem";
 import { useSearch } from "../../hooks/useSearch";
+import Dropdown from "../UI/Dropdown";
 
 const RepoLists = ({ query, page }) => {
   const { repos, totalRepos } = useSelector((state) => state.repo);
   const search = useSearch();
+  const dispatch = useDispatch();
 
   const handlePage = (newPageNumber) => {
-    console.log(newPageNumber);
     search(query, newPageNumber);
+  };
+
+  const sortList = [
+    {
+      name: "Default",
+      value: "default",
+    },
+    { name: "Stars", value: "stars" },
+    {
+      name: "Forks",
+      value: "forks",
+    },
+    {
+      name: "Updated",
+      value: "updated",
+    },
+  ];
+
+  const handleSort = (sortValue) => {
+    dispatch(fetchRepos(query, page, sortValue));
   };
 
   return (
     <>
-      <p className="text-md text-gray-600 pb-3">About {totalRepos} results.</p>
+      <div className="flex gap-4 pb-3">
+        <p className="text-md  text-gray-600 ">About {totalRepos} results.</p>
+        <div className="flex items-center">
+          <Dropdown onHandleSort={handleSort} sortList={sortList} />
+        </div>
+      </div>
 
       <div className="flex flex-wrap gap-5 basis-auto justify-center lg:justify-start md:justify-start sm:justify-start">
         {repos.length > 0 ? (
