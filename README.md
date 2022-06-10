@@ -1,9 +1,4 @@
-# How to Setup
-
-
- 
-# Available Scripts
- 
+# How to Setup 
 
 In the project directory, you need to run:
 
