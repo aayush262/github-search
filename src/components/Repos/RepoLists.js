@@ -7,9 +7,7 @@ import { useSearch } from "../../hooks/useSearch";
 import Dropdown from "../UI/Dropdown";
 
 const RepoLists = ({ query, page }) => {
-  const { repos, totalRepos, sortBy, showLoading } = useSelector(
-    (state) => state.repo
-  );
+  const { repos, totalRepos, sortBy } = useSelector((state) => state.repo);
   const search = useSearch();
   const dispatch = useDispatch();
 
@@ -50,15 +48,19 @@ const RepoLists = ({ query, page }) => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-5 basis-auto justify-center lg:justify-start md:justify-start sm:justify-start">
+      <ul className=" flex flex-wrap gap-5 basis-auto justify-center lg:justify-start md:justify-start sm:justify-start">
         {repos.length > 0 ? (
-          repos.map((repo) => <RepoItem key={repo.id} repo={repo} />)
+          repos.map((repo) => (
+            <li className="list-none" key={repo.id}>
+              <RepoItem repo={repo} />
+            </li>
+          ))
         ) : (
           <h2 className="font-redHat flex h-[60vh] text-2xl w-full items-center justify-center">
             No results Found
           </h2>
         )}
-      </div>
+      </ul>
 
       <Pagination
         currentPage={page}

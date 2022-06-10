@@ -1,13 +1,16 @@
 import { repoActions } from "./repo-slice";
 import github from "../api/github";
 
+const clientSecret = process.env.REACT_APP_CLIENT_SECRET || "";
+const clientId = process.env.REACT_APP_CLIENT_ID || "";
+
 //fetching list of repositories
 export const fetchRepos = (query, page, sortValue = "default") => {
   return async (dispatch) => {
     const fetchData = async () => {
       dispatch(repoActions.changeLoadingState());
       const { data } = await github.get(
-        `/search/repositories?q=${query}&sort=${sortValue}&per_page=25&page=${page}&order={desc}`
+        `/search/repositories?q=${query}&sort=${sortValue}&per_page=25&page=${page}&client_id=${clientId}&client_secret=${clientSecret}`
       );
       return data;
     };
@@ -33,7 +36,9 @@ export const fetchRepos = (query, page, sortValue = "default") => {
 export const fetchRepoItem = (owner, name) => {
   return async (dispatch) => {
     try {
-      const { data } = await github.get(`/repos/${owner}/${name}`);
+      const { data } = await github.get(
+        `/repos/${owner}/${name}?client_id=${clientId}&client_secret=${clientSecret}`
+      );
       dispatch(repoActions.selectRepo(data));
     } catch {}
   };
@@ -43,7 +48,9 @@ export const fetchRepoItem = (owner, name) => {
 export const fetchContent = (owner, name) => {
   return async (dispatch) => {
     try {
-      const { data } = await github.get(`/repos/${owner}/${name}/readme`);
+      const { data } = await github.get(
+        `/repos/${owner}/${name}/readme?&client_id=${clientId}&client_secret=${clientSecret}`
+      );
       const decoded = window.atob(data.content);
       dispatch(repoActions.replaceContent(decoded));
     } catch {}

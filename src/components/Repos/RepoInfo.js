@@ -32,12 +32,11 @@ const RepoInfo = () => {
                   to={selectedRepo.html_url.replace("https:", "")}
                   target="_blank"
                 >
-                  <h2 className="text-lg font-redHat hover:text-blue-700">
+                  <h2 className="text-lg font-redHat hover:text-blue-700 hover:cursor-pointer">
                     {selectedRepo.name}
                   </h2>
                 </Link>
                 <Link
-                  reloadDocument
                   target="_blank"
                   to={{
                     pathname: `${selectedRepo.owner.html_url.replace(
@@ -46,7 +45,7 @@ const RepoInfo = () => {
                     )}`,
                   }}
                 >
-                  <p className="text-md text-gray-600 hover:text-blue-700 inline">
+                  <p className="text-md text-gray-600 hover:text-blue-700 inline hover:cursor-pointer">
                     {selectedRepo.owner.login}
                     <span>&nbsp;. &nbsp;</span>
                   </p>
