@@ -47,12 +47,9 @@ const RepoDetails = () => {
       </NavBar>
       <main className="lg:mx-40 md:mx-10 mx-2 mt-4">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
-          <li className="inline-flex items-center">
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-gray-900 inline-flex items-center"
-            >
-              <HomeIcon fill="#000" />
+          <li className="flex">
+            <Link to="/" className="flex gap-2">
+              <HomeIcon fill="#000" height={22} width={22} />
               Home
             </Link>
           </li>
