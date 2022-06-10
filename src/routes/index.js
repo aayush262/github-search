@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "../Pages/LandingPage";
-import NotFound from "../Pages/NotFound";
-import RepoDetails from "../Pages/RepoDetails";
-import Results from "../Pages/Results";
+import LandingPage from "../pages/LandingPage";
+import NotFound from "../pages/NotFound";
+import RepoDetails from "../pages/RepoDetails";
+import Results from "../pages/Results";
 
 const AppRoutes = () => {
   return (

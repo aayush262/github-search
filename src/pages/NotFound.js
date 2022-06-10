@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import Container from "./../Components/Layouts/Container";
+import Container from "./../components/Layouts/Container";
 
 const NotFound = () => {
   const params = useParams();

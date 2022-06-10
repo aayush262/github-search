@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearch } from "../hooks/useSearch";
 import { notify } from "../utils/notify";
 import { fetchRepos } from "../store/repo-actions";
-import Button from "../Components/UI/Button";
-import NavBar from "../Components/Layouts/NavBar";
-import Brand from "../Components/Brand";
-import Input from "../Components/UI/Input";
-import Container from "../Components/Layouts/Container";
-import RepoLists from "../Components/Repos/RepoLists";
+import Button from "../components/UI/Button";
+import NavBar from "../components/Layouts/NavBar";
+import Brand from "../components/Brand";
+import Input from "../components/UI/Input";
+import Container from "../components/Layouts/Container";
+import RepoLists from "../components/Repos/RepoLists";
 
 //icon imports
 import { ReactComponent as SearchIcon } from "./../Assets/icons/search.svg";
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
-import Loader from "../Components/UI/Loader";
+import Loader from "../components/UI/Loader";
 
 const Results = () => {
   const [searchParams] = useSearchParams();

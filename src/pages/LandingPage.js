@@ -2,11 +2,11 @@ import React, { useRef } from "react";
 import { notify } from "../utils/notify";
 import { useSearch } from "./../hooks/useSearch";
 import { keywords } from "../utils/keywords";
-import Brand from "../Components/Brand";
-import Container from "../Components/Layouts/Container";
-import NavBar from "../Components/Layouts/NavBar";
-import Button from "../Components/UI/Button";
-import Input from "../Components/UI/Input";
+import Brand from "../components/Brand";
+import Container from "../components/Layouts/Container";
+import NavBar from "../components/Layouts/NavBar";
+import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
 
 const LandingPage = () => {
   const searchInputRef = useRef();

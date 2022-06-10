@@ -4,12 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import { fetchRepoItem, fetchContent } from "../store/repo-actions";
 import { keywords } from "../utils/keywords";
 import { useSearch } from "../hooks/useSearch";
-import Container from "../Components/Layouts/Container";
-import NavBar from "../Components/Layouts/NavBar";
-import Brand from "../Components/Brand";
-import Button from "../Components/UI/Button";
-import RepoInfo from "../Components/Repos/RepoInfo";
-import MarkDown from "../Components/Repos/MarkDown";
+import Container from "../components/Layouts/Container";
+import NavBar from "../components/Layouts/NavBar";
+import Brand from "../components/Brand";
+import Button from "../components/UI/Button";
+import RepoInfo from "../components/Repos/RepoInfo";
+import MarkDown from "../components/Repos/MarkDown";
 
 import { ReactComponent as HomeIcon } from "./../Assets/icons/home.svg";
 import { ReactComponent as ArrowRightIcon } from "./../Assets/icons/arrowRight.svg";
