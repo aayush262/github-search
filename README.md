@@ -1,4 +1,4 @@
-Whach live demo [here] (https://github-search-ten-dun.vercel.app)
+Whach live demo here: (https://github-search-ten-dun.vercel.app)
 
 # How to Setup 
 
