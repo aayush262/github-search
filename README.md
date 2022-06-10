@@ -17,7 +17,7 @@ to use it.
 
 # Setting up evironment variables
 
-  You can edit .env.example to .env and provide your client_secret and key to increase api rate limit. (Optional)
+  You can rename .env.example to .env and provide your client_secret and key to increase api rate limit. (Optional)
  
   ```REACT_APP_CLIENT_SECRET= YOUR CLIENT SECRET``` \
   ```REACT_APP_GITHUB_CLIENT_ID= YOUR CLUIENT ID``` 
