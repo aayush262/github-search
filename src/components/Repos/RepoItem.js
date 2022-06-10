@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { repoActions } from "../../store/repo-slice";
@@ -11,11 +11,17 @@ import { ReactComponent as ForkIcon } from "../../Assets/icons/fork.svg";
 const RepoItem = ({ repo }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isMore, setMore] = useState(false);
 
   const handleRepo = () => {
     dispatch(repoActions.selectRepo(repo));
     navigate(`/repo/${repo.full_name}`);
   };
+
+  const handleDescription = () => {
+    setMore(!isMore);
+  };
+
   return (
     <div>
       <Card>
@@ -52,8 +58,13 @@ const RepoItem = ({ repo }) => {
         </h1>
         {repo.description && repo.description.length >= 40 ? (
           <p className="text-sm text-gray-600">
-            {repo.description.slice(0, 40)}....&nbsp;
-            <span className="text-blue-800">more</span>
+            {!isMore ? repo.description.slice(0, 40) : repo.description}
+            <span
+              className="text-blue-800 hover:cursor-pointer hover:text-blue-900"
+              onClick={handleDescription}
+            >
+              {isMore ? " less" : ".... more"}
+            </span>
           </p>
         ) : (
           <p className="text-sm text-gray-600">{repo.description}</p>

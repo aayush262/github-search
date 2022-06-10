@@ -79,7 +79,7 @@ const RepoDetails = () => {
             </div>
             <MarkDown />
           </div>
-          <div className="w-1/3 h-full">
+          <div className="lg:w-1/3 h-full w-full">
             <RepoInfo />
           </div>
         </section>
