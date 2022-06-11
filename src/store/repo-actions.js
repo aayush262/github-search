@@ -1,4 +1,5 @@
 import { repoActions } from "./repo-slice";
+import { base64 } from "../utils/base64";
 import github from "../api/github";
 
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET || "";
@@ -51,7 +52,7 @@ export const fetchContent = (owner, name) => {
       const { data } = await github.get(
         `/repos/${owner}/${name}/readme?&client_id=${clientId}&client_secret=${clientSecret}`
       );
-      const decoded = window.atob(data.content);
+      const decoded = base64.decoder(data.content);
       dispatch(repoActions.replaceContent(decoded));
     } catch {}
   };
