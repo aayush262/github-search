@@ -76,7 +76,7 @@ const RepoDetails = () => {
             </div>
             <MarkDown />
           </div>
-          <div className="lg:w-1/3 h-full w-full">
+          <div className="lg:w-1/3 h-full w-full order-first lg:order-1">
             <RepoInfo />
           </div>
         </section>

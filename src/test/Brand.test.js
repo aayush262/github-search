@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import Brand from "./../Components/Brand";
 
 describe("Brant Test", () => {
-  test("renders brand text", () => {
+  it("renders brand text", () => {
     render(<Brand />, { wrapper: BrowserRouter });
     const displayElement = screen.getByText("Github Search", {
       exact: true,
