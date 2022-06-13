@@ -13,3 +13,17 @@
         background-color: rgb(241,245,249);
     }
 }
+
+code {
+    background: rgba(120, 115, 115, 0.2);
+    border-radius: 5px;
+    padding:0.2rem 0.1rem
+}
+
+pre code {
+    background: rgba(120, 115, 115, 0.2);
+    display:block;
+    overflow-x:auto;
+    padding: 0.8rem 0.5rem;
+    border-radius: 5px;
+}
